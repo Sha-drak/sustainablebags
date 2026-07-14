@@ -240,10 +240,6 @@ function App() {
     return () => window.clearInterval(timer)
   }, [reducedMotion])
 
-  const goToSlide = (index: number) => {
-    setActiveSlide(index)
-  }
-
   const handleFieldChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target
     setFormData((current) => ({ ...current, [name]: value }))
