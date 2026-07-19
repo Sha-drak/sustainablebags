@@ -332,9 +332,9 @@ body {
 .story-image {
   min-height: 280px;
   border-radius: 1.4rem;
-  background:
-    linear-gradient(135deg, rgba(26, 71, 49, 0.2), rgba(0, 0, 0, 0.08)),
-    url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=80') center/cover;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
@@ -461,6 +461,52 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.7rem, 2vw, 2.3rem);
   margin: 0;
+}
+
+.products-section {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+}
+
+.category-block {
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 1.2rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.category-header h3 {
+  margin: 0 0 0.9rem;
+  font-size: 1.15rem;
+  color: #1a4731;
+}
+
+.product-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.product-card {
+  background: transparent;
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 0.9rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 8px 18px rgba(15, 29, 20, 0.08);
 }
 
 .two-column,
@@ -834,6 +880,7 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .product-columns,
   .product-grid {
     grid-template-columns: 1fr;
   }
@@ -890,15 +937,15 @@ body {
   }
 
   .hero-section {
-    padding: 6rem 1rem 1.4rem;
-    min-height: 92vh;
+    padding: 5.2rem 1rem 1.1rem;
+    min-height: 88vh;
     justify-content: center;
   }
 
   .hero-content {
     grid-template-columns: 1fr;
-    gap: 1.1rem;
-    margin-bottom: 1.3rem;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
     align-items: center;
   }
 

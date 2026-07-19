@@ -1,52 +1,53 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import heroBackgroundOne from './images/Background1.png'
+import heroBackgroundTwo from './images/Background2.jpg'
+import heroBackgroundThree from './images/Background3.jpg'
+import heroBackgroundFour from './images/Background1.png'
+import productBagOne from './images/schoolbag1.png'
+import productBagTwo from './images/schoolbag2.jpg'
+import productBagThree from './images/tote1.jpg'
+import productBagFour from './images/tote2.jpg'
+import ourStoryImage from './images/our story.jpg'
 import './App.css'
 
 type FormErrors = Record<string, string>
-
-type Marker = {
-  id: number
-  name: string
-  students: string
-  x: number
-  y: number
-}
 
 const slides = [
   {
     headline: 'Turning Waste Into Opportunities',
     body: 'We transform discarded materials into durable school bags that open doors for young learners.',
-    background: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80',
+    background: heroBackgroundOne,
     ctas: [
       { label: 'Request Bags', href: '#request' },
-      { label: 'Discover Our Impact', href: '#impact' },
+      { label: 'Learn more', href: '#story' },
     ],
   },
   {
     headline: 'Waste Today. Opportunity Tomorrow.',
     body: 'Every bag tells a story of circular design, dignified work, and renewed purpose.',
-    background: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
+    background: heroBackgroundTwo,
     ctas: [
-      { label: 'Explore Our Process', href: '#timeline' },
-      { label: 'Become a Partner', href: '#partners' },
+      { label: 'Request Bags', href: '#request' },
+      { label: 'Learn more', href: '#story' },
     ],
   },
   {
     headline: 'Sustainable Bags Designed With Purpose',
     body: 'Thoughtful craftsmanship meets local impact through community-led production.',
-    background: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80',
+    background: heroBackgroundThree,
     ctas: [
-      { label: 'Shop Tote Bags', href: 'https://wa.me/233500000000', target: '_blank' },
-      { label: 'Customize a Bag', href: '#request' },
+      { label: 'Request Bags', href: '#request' },
+      { label: 'Learn more', href: '#story' },
     ],
   },
   {
     headline: 'Help Equip The Next Generation',
     body: 'Support school communities across Ghana with a practical, premium resource.',
-    background: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1600&q=80',
+    background: heroBackgroundFour,
     ctas: [
-      { label: 'Submit A Request', href: '#request' },
-      { label: 'View Supported Schools', href: '#schools' },
+      { label: 'Request Bags', href: '#request' },
+      { label: 'Learn more', href: '#story' },
     ],
   },
 ]
@@ -72,18 +73,16 @@ const solutionCards = [
 const productCategories = [
   {
     title: 'Community School Bags',
-    ctaLabel: 'Request Bags',
     products: [
-      { name: 'Classroom Pack Tote', description: 'Built for daily use and school readiness.', image: '👜' },
-      { name: 'Learning Essentials Bag', description: 'Sturdy storage for books and supplies.', image: '🎒' },
+      { name: 'Classroom Pack Tote', image: productBagOne },
+      { name: 'Learning Essentials Bag', image: productBagTwo },
     ],
   },
   {
     title: 'Lifestyle Tote Collection',
-    ctaLabel: 'Shop Collection',
     products: [
-      { name: 'Urban Carry Tote', description: 'Premium everyday style with recycled texture.', image: '🛍️' },
-      { name: 'Market Day Tote', description: 'A bold practical option for city and campus life.', image: '🧺' },
+      { name: 'Urban Carry Tote', image: productBagThree },
+      { name: 'Market Day Tote', image: productBagFour },
     ],
   },
 ]
@@ -100,25 +99,6 @@ const schoolCards = [
     location: 'Ashanti Region',
     students: '85 Students',
     year: '2025',
-  },
-]
-
-const partnerCards = [
-  {
-    title: 'Schools',
-    description: 'Support a school-led delivery and equip learners through tailored bag requests.',
-  },
-  {
-    title: 'NGOs',
-    description: 'Join a trusted network and help communities access essential educational tools.',
-  },
-  {
-    title: 'Companies',
-    description: 'Sponsor production and amplify local impact through measurable partnerships.',
-  },
-  {
-    title: 'Individuals',
-    description: 'Become a changemaker by funding bags and sharing the story of circular impact.',
   },
 ]
 
@@ -141,30 +121,11 @@ const timelineSteps = [
   },
 ]
 
-const mapMarkers: Marker[] = [
-  { id: 1, name: 'Asempanaye', students: '120 Students', x: 28, y: 60 },
-  { id: 2, name: 'Kumasi Learning Centre', students: '85 Students', x: 48, y: 48 },
-  { id: 3, name: 'Cape Coast Hub', students: '70 Students', x: 38, y: 74 },
-]
-
 const quickLinks = [
   { label: 'Home', href: '#home' },
   { label: 'Our Story', href: '#story' },
   { label: 'Products', href: '#products' },
-  { label: 'Impact', href: '#impact' },
-]
-
-const involvedLinks = [
-  { label: 'Schools', href: '#schools' },
-  { label: 'Partner With Us', href: '#partners' },
   { label: 'Request Bags', href: '#request' },
-]
-
-const socialLinks = [
-  { label: 'Facebook', href: 'https://facebook.com' },
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'Twitter/X', href: 'https://x.com' },
 ]
 
 const initialFormState = {
@@ -181,7 +142,6 @@ function App() {
   const [activeSlide, setActiveSlide] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [activeMarker, setActiveMarker] = useState<number | null>(null)
   const [formData, setFormData] = useState(initialFormState)
   const [formErrors, setFormErrors] = useState<FormErrors>({})
   const [submitState, setSubmitState] = useState<'idle' | 'success' | 'error'>('idle')
@@ -308,20 +268,19 @@ function App() {
     <div className="page-shell">
       <nav className={`top-nav ${scrolled ? 'scrolled' : ''}`}>
         <a className="brand" href="#home" onClick={(event) => { event.preventDefault(); scrollToSection('home') }}>
-          Enactus
+          Enactus UENR
         </a>
         <button className="mobile-toggle" aria-label="Toggle navigation" onClick={() => setMenuOpen((open) => !open)}>
           ☰
         </button>
         <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          {['home', 'story', 'products', 'impact', 'schools', 'partners'].map((id) => {
+          {['home', 'story', 'products', 'impact', 'schools'].map((id) => {
             const label = {
               home: 'Home',
               story: 'Our Story',
               products: 'Products',
               impact: 'Impact',
               schools: 'Schools',
-              partners: 'Partner With Us',
             }[id]
             return (
               <a key={id} href={`#${id}`} onClick={(event) => { event.preventDefault(); scrollToSection(id) }}>
@@ -358,7 +317,7 @@ function App() {
                 <p className="hero-body">{slides[activeSlide].body}</p>
                 <div className="hero-actions">
                   {slides[activeSlide].ctas.map((cta) => (
-                    <a key={cta.label} className={cta.label === 'Request Bags' || cta.label === 'Submit A Request' ? 'btn btn-primary' : 'btn btn-secondary'} href={cta.href} target={cta.target} rel="noreferrer" onClick={(event) => {
+                    <a key={cta.label} className={cta.label === 'Request Bags' ? 'btn btn-primary' : 'btn btn-secondary'} href={cta.href} onClick={(event) => {
                       if (cta.href.startsWith('#')) {
                         event.preventDefault();
                         scrollToSection(cta.href.replace('#', ''))
@@ -396,7 +355,7 @@ function App() {
                 <h3>From discarded materials to meaningful tools for learning.</h3>
                 <p>Built through a process rooted in sustainability, local pride, and long-term community value.</p>
               </div>
-              <div className="story-image" aria-hidden="true" />
+              <div className="story-image" aria-hidden="true" style={{ backgroundImage: `url(${ourStoryImage})` }} />
             </div>
           </div>
         </motion.section>
@@ -432,24 +391,21 @@ function App() {
           </div>
         </motion.section>
 
-        <motion.section id="products" className="section" initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={reducedMotion ? { duration: 0 } : { duration: 0.5, ease: 'easeOut' }}>
+        <motion.section id="products" className="section products-section" initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={reducedMotion ? { duration: 0 } : { duration: 0.5, ease: 'easeOut' }}>
           <div className="section-heading">
             <p className="eyebrow">Products</p>
-            <h2>Choose the collection that fits your need</h2>
+            <h2>Two refined collections</h2>
           </div>
           <div className="product-columns">
             {productCategories.map((category, categoryIndex) => (
               <div key={category.title} className="category-block">
-                <h3>{category.title}</h3>
+                <div className="category-header">
+                  <h3>{category.title}</h3>
+                </div>
                 <div className="product-grid">
                   {category.products.map((product, productIndex) => (
-                    <motion.article key={product.name} className="card product-card" initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={reducedMotion ? { duration: 0 } : { duration: 0.4, delay: categoryIndex * 0.15 + productIndex * 0.15, ease: 'easeOut' }}>
-                      <div className="product-icon">{product.image}</div>
-                      <h4>{product.name}</h4>
-                      <p>{product.description}</p>
-                      <a className="btn btn-primary" href="#request" onClick={(event) => { event.preventDefault(); scrollToSection('request') }}>
-                        {category.ctaLabel}
-                      </a>
+                    <motion.article key={product.name} className="product-card" initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={reducedMotion ? { duration: 0 } : { duration: 0.4, delay: categoryIndex * 0.15 + productIndex * 0.15, ease: 'easeOut' }}>
+                      <div className="product-image" aria-hidden="true" style={{ backgroundImage: `url(${product.image})` }} />
                     </motion.article>
                   ))}
                 </div>
@@ -578,53 +534,6 @@ function App() {
           </div>
         </motion.section>
 
-        <section id="partners" className="section">
-          <div className="section-heading">
-            <p className="eyebrow">Partners &amp; Sponsors</p>
-            <h2>Support the journey in a way that fits you</h2>
-          </div>
-          <div className="partner-grid">
-            {partnerCards.map((card) => (
-              <article key={card.title} className="card partner-card">
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
-                <a className="btn btn-secondary" href="#request" onClick={(event) => { event.preventDefault(); scrollToSection('request') }}>
-                  Partner With Us
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section map-section">
-          <div className="section-heading">
-            <p className="eyebrow">Interactive Impact Map</p>
-            <h2>Where the work reaches</h2>
-          </div>
-          <div className="map-wrapper" onClick={() => setActiveMarker(null)}>
-            {mapMarkers.length > 0 ? (
-              <svg viewBox="0 0 100 100" className="map-svg" role="img" aria-label="Map of Ghana with supported communities">
-                <rect x="5" y="5" width="90" height="90" rx="12" className="map-bg" />
-                <path d="M21 37c4-7 9-12 15-15 3-2 8-4 9-2 2 3-3 8-1 12 2 4 10 3 15 5 4 2 6 9 10 11 4 2 10 3 13 7 2 3 4 7 1 10-2 3-5 4-8 5-5 1-10-1-16 1-5 2-8 8-13 9-4 1-8 0-12-2-6-3-10-9-13-14-4-5-6-10-6-16 0-6 2-11 5-15z" className="map-region" />
-                {mapMarkers.map((marker) => (
-                  <g key={marker.id} onClick={(event) => { event.stopPropagation(); setActiveMarker(marker.id) }} onMouseEnter={() => setActiveMarker(marker.id)} onMouseLeave={() => setActiveMarker(null)}>
-                    <circle cx={marker.x} cy={marker.y} r="3.5" className="map-marker" />
-                    <circle cx={marker.x} cy={marker.y} r="1.8" className="map-marker-core" />
-                  </g>
-                ))}
-              </svg>
-            ) : (
-              <div className="map-fallback">Impact location data is currently unavailable.</div>
-            )}
-            {activeMarker !== null && (
-              <div className="map-tooltip">
-                <strong>{mapMarkers.find((marker) => marker.id === activeMarker)?.name}</strong>
-                <span>{mapMarkers.find((marker) => marker.id === activeMarker)?.students}</span>
-              </div>
-            )}
-          </div>
-        </section>
-
         <motion.section className="section" initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={reducedMotion ? { duration: 0 } : { duration: 0.5, ease: 'easeOut' }}>
           <div className="section-heading">
             <p className="eyebrow">Storytelling Timeline</p>
@@ -657,15 +566,6 @@ function App() {
             <h4>Quick Links</h4>
             <ul>{quickLinks.map((link) => <li key={link.label}><a href={link.href}>{link.label}</a></li>)}</ul>
           </div>
-          <div>
-            <h4>Get Involved</h4>
-            <ul>{involvedLinks.map((link) => <li key={link.label}><a href={link.href}>{link.label}</a></li>)}</ul>
-          </div>
-        </div>
-        <div className="footer-social">
-          <h4>Connect</h4>
-          <ul>{socialLinks.map((link) => <li key={link.label}><a href={link.href} target="_blank" rel="noreferrer">{link.label}</a></li>)}</ul>
-          <p>Email: impact@enactus.org</p>
         </div>
         <p className="copyright">© {new Date().getFullYear()} Enactus. All rights reserved.</p>
       </footer>
