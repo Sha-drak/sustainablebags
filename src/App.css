@@ -119,7 +119,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: flex-start;
   padding: 5rem 2rem 2rem;
   background-position: center;
@@ -143,7 +143,7 @@ body {
 
 .hero-content {
   width: 100%;
-  margin-top: auto;
+  margin-top: 6rem;
   margin-bottom: 2rem;
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
@@ -936,9 +936,16 @@ body {
     display: flex;
   }
 
+  .hero-section {
+    padding: 4rem 1rem 0.6rem;
+    min-height: 82vh;
+  }
+
   .hero-content {
     grid-template-columns: 1fr;
     gap: 0.55rem;
+    margin-top: 3.8rem;
+    margin-bottom: 0.45rem;
     align-items: center;
   }
 
@@ -1008,6 +1015,10 @@ body {
 
   .top-nav {
     padding: 0.8rem 0.9rem;
+  }
+
+  .hero-section {
+    padding: 4rem 0.9rem 0.55rem;
   }
 
   .hero-copy h1 {
