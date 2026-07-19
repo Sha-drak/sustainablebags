@@ -936,16 +936,9 @@ body {
     display: flex;
   }
 
-  .hero-section {
-    padding: 4rem 1rem 0.6rem;
-    min-height: 82vh;
-    justify-content: flex-start;
-  }
-
   .hero-content {
     grid-template-columns: 1fr;
     gap: 0.55rem;
-    margin-bottom: 0.45rem;
     align-items: center;
   }
 
@@ -1015,10 +1008,6 @@ body {
 
   .top-nav {
     padding: 0.8rem 0.9rem;
-  }
-
-  .hero-section {
-    padding: 4rem 0.9rem 0.55rem;
   }
 
   .hero-copy h1 {
